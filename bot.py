@@ -34,7 +34,9 @@ def play(update: Update, context: CallbackContext) -> None:
                                   'Use "/guess [number]" to make your guess.')
 
 def guess(update: Update, context: CallbackContext) -> None:
-    game_in_progress = context.chat_data['game_in_progress']
+    game_in_progress = False
+    if 'game_in_progress' in context.chat_data:
+        game_in_progress = context.chat_data['game_in_progress']
     if not game_in_progress:
         update.message.reply_text('No game in progress. Use "/play" to ' +
                                   'start a game.')
